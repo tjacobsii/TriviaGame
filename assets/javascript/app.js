@@ -32,7 +32,7 @@ var questions =[{
 },{
   question:"Who tells the press where McQueen is?",
   answers: ["Sally","Mater","Sarge","Doc"],
-  correctAnswer: "Sally"
+  correctAnswer: "Doc"
 },{
   question:"What does Sally call Lightning McQueen?",
   answers: ["Lightning","Stickers","McQueen","95"],
@@ -46,7 +46,7 @@ var questions =[{
 var game = {
     correct: 0,
     incorrect: 0,
-    counter: 20,
+    counter: 120,
     countdown: function(){
         game.counter--;
         $('#counter').html(game.counter);
@@ -62,18 +62,22 @@ var game = {
         for(var i=0; i<questions.length;i++){
             $('#subwrapper').append('<h2>'+questions[i].question+'</h2>')
             for(var j=0; j<questions[i].answers.length;j++){
-                $('#subwrapper').append("<input type='radio' name='question-" +i+" value="+questions[i].answers[j]+"'>"+questions[i].answers[j])
+              //$('#subwrapper').append('<input type="radio" name="question-0" value="Radiator Springs">')  
+             $('#subwrapper').append("<input type='radio' name='question-" +i+"' value='"+questions[i].answers[j]+"'>"+questions[i].answers[j]) 
+              
             }
         }
         $('#subwrapper').append('<br><button id="end">DONE</button>');
     },
     done: function(){
         $.each($("input[name='question-0']:checked"),function(){
-            console.log($(this).val());
+             console.log($(this).val());
             if($(this).val()==questions[0].correctAnswer){
                 game.correct++;
+                console.log(game.correct+"correct");
             } else {
                 game.incorrect++;
+                console.log("Incorrect")
             }
         });
         $.each($("input[name='question-1']:checked"),function(){
@@ -148,3 +152,5 @@ var game = {
             console.log("Testing 2")
         }
 }
+
+
